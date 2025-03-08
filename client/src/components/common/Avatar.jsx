@@ -17,7 +17,12 @@ function Avatar({ type, image, setImage }) {
     setContextMenuCordinates({ x: e.clientX, y: e.clientY });
   };
 
-  const contextMenuOptions = [{ name: "Take Photo", callback: () => {} }];
+  const contextMenuOptions = [
+    { name: "Take Photo", callback: () => {} },
+    { name: "Choose from Library", callback: () => {} },
+    { name: "Upload Photo", callback: () => {} },
+    { name: "Remove Photo", callback: () => {} },
+  ];
 
   return (
     <>

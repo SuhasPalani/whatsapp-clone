@@ -14,8 +14,11 @@ function ContextMenu({ options, coordinates, contextMenu, setContextMenu }) {
     >
       <ul>
         {options.map(({ name, callback }) => (
-          <li key={name} onClick={(e) => hancleClick(e, callback)}
-            className="px-5 py-2 hover:bg-background-default-hover cursor-pointer">
+          <li
+            key={name}
+            onClick={(e) => hancleClick(e, callback)}
+            className="px-5 py-2 hover:bg-background-default-hover cursor-pointer"
+          >
             <span className="text-white">{name}</span>
           </li>
         ))}
