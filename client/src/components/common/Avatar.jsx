@@ -12,7 +12,21 @@ function Avatar({ type, image, setImage }) {
     y: 0,
   });
 
-  const photoPickerChange = (photo) => {};
+  const photoPickerChange = async (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    const data = document.createElement("img");
+    reader.onload = function (event) {
+      data.src = event.target.result;
+      data.setAttribute("data-src", event.target.result);
+    };
+    reader.readAsDataURL(file);
+    setTimeout(() => {
+      // console.log(data.src);
+      setImage(data.src);
+    }, 100);
+  };
+
   const [grabPhoto, setGrabPhoto] = useState(false);
 
   const showContextMenu = (e) => {
@@ -21,13 +35,15 @@ function Avatar({ type, image, setImage }) {
     setContextMenuCordinates({ x: e.clientX, y: e.clientY });
   };
 
-useEffect(() => {
+  useEffect(() => {
     if (grabPhoto) {
       document.getElementById("photo-picker").click();
       document.body.onfocus = (e) => {
-        setGrabPhoto(false);
+        setTimeout(() => {
+          setGrabPhoto(false);
+        }, 1000);
       };
-    };
+    }
   }, [grabPhoto]);
 
   const contextMenuOptions = [
